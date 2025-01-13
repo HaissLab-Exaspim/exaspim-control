@@ -39,11 +39,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-"dev" = [
-    "black",
-    "isort",
-    "flake8"
-]
+"dev" = ["black", "isort", "flake8"]
 
 [project.urls]
 "Homepage" = "https://github.com/AllenNeuralDynamics/exaspim-control"
