@@ -25,14 +25,19 @@ def launch(config_path, simulated: bool) -> None:
 
         launch_simulated_exaspim()
 
+    def launch_real_device() -> None:
+        from exaspim_control.experimental.main import launch_exaspim
+
+        launch_exaspim()
+
     if simulated:
         launch_simulated()
     else:
-        click.echo(f"Exaspim config path: {config_path}")
-        click.echo("Not yet implemented.")
-        click.echo("Launching simulated ExASPIM instead.")
+        # click.echo(f"Exaspim config path: {config_path}")
+        # click.echo("Not yet implemented.")
+        # click.echo("Launching simulated ExASPIM instead.")
 
-        launch_simulated()
+        launch_real_device()
 
 
 if __name__ == "__main__":

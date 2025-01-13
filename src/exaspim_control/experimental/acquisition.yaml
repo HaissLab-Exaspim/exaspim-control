@@ -19,7 +19,7 @@ acquisition:
         format: [ instrument_type, subject_id ]
   operations:
     vp-151mx:
-      imaris:
+      imaris: 
         type: writer
         driver: voxel.writers.imaris
         module: ImarisWriter

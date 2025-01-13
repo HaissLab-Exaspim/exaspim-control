@@ -17,7 +17,8 @@ ACQUISITION_YAML = RESOURCES_DIR / "acquisition.yaml"
 INSTRUMENT_YAML = RESOURCES_DIR / "instrument.yaml"
 GUI_YAML = RESOURCES_DIR / "gui_config.yaml"
 
-if __name__ == "__main__":
+
+def launch_exaspim():
 
     # Setup logging.
     # Create log handlers to dispatch:
@@ -66,3 +67,7 @@ if __name__ == "__main__":
     )
 
     sys.exit(app.exec_())
+
+
+if __name__ == "__main__":
+    launch_exaspim()
