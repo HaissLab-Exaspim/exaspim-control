@@ -19,7 +19,7 @@ instrument:
       driver: voxel.devices.camera.vieworks.egrabber
       module: VieworksCamera
       init:
-        id: MP151BBX006
+        id: MP151BCY018
       properties:
         exposure_time_ms: 10.0
         pixel_type: mono16
@@ -231,7 +231,7 @@ instrument:
             name: ao task
             ports:
               left tunable lens:
-                port: ao1
+                port: ao0
                 waveform: sawtooth
                 device_max_volts: 10.0
                 device_min_volts: 0.0
@@ -293,7 +293,7 @@ instrument:
                       "561": 1000
                       "639": 1000
               stage:
-                port: ao5
+                port: ao2
                 waveform: square wave
                 device_max_volts: 5.0
                 device_min_volts: 0.0
@@ -319,7 +319,7 @@ instrument:
                       "561": 0.0
                       "639": 0.0
               camera:
-                port: ao21
+                port: ao1
                 waveform: square wave
                 device_max_volts: 5.0
                 device_min_volts: 0.0
@@ -345,7 +345,7 @@ instrument:
                       "561": 0.0
                       "639": 0.0
               488 nm:
-                port: ao17
+                port: ao7
                 waveform: square wave
                 device_max_volts: 10.0
                 device_min_volts: 0.0
@@ -371,7 +371,7 @@ instrument:
                       "561": 0.0
                       "639": 0.0
               561 nm:
-                port: ao13
+                port: ao4
                 waveform: square wave
                 device_max_volts: 10.0
                 device_min_volts: 0.0
@@ -397,7 +397,7 @@ instrument:
                       "561": 0.0
                       "639": 0.0
               639 nm:
-                port: ao9
+                port: ao13
                 waveform: square wave
                 device_max_volts: 10.0
                 device_min_volts: 0.0

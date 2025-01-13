@@ -25,7 +25,7 @@ keywords = [
     "microscope",
     "imaging",
 ]
-dynamic = ["version"]
+dynamic = ["version"]   
 
 dependencies = [
     "voxel",
