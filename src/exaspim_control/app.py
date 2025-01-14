@@ -39,21 +39,17 @@ def launch(config_path: str, simulated: bool) -> None:
         Launch the simulated ExASPIM application.
         """
         from exaspim_control.simulated.main import launch_simulated_exaspim
-
         launch_simulated_exaspim()
 
     def launch_real_device() -> None:
         from exaspim_control.experimental.main import launch_exaspim
-
         launch_exaspim()
 
     if simulated:
+        click.echo(f"Running using simulated devices")
         launch_simulated()
     else:
-        # click.echo(f"Exaspim config path: {config_path}")
-        # click.echo("Not yet implemented.")
-        # click.echo("Launching simulated ExASPIM instead.")
-
+        click.echo(f"Running using physical devices")
         launch_real_device()
 
 

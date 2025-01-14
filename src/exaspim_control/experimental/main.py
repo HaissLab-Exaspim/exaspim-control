@@ -13,6 +13,7 @@ from exaspim_control.exa_spim_acquisition import ExASPIMAcquisition
 from datetime import datetime
 
 RESOURCES_DIR = Path(os.path.dirname(os.path.realpath(__file__)))
+LOG_FOLDER = Path(__file__).parent.parent.parent.parent / "logs" 
 ACQUISITION_YAML = RESOURCES_DIR / "acquisition.yaml"
 INSTRUMENT_YAML = RESOURCES_DIR / "instrument.yaml"
 GUI_YAML = RESOURCES_DIR / "gui_config.yaml"
@@ -31,7 +32,8 @@ def launch_exaspim():
     fmt = "%(asctime)s.%(msecs)03d %(levelname)s %(name)s: %(message)s"
     datefmt = "%Y-%m-%d,%H:%M:%S"
     log_formatter = logging.Formatter(fmt=fmt, datefmt=datefmt)
-    log_filename = f'output_{datetime.now().strftime("%Y-%m-%d_%H-%M-%S")}.log'
+    LOG_FOLDER.mkdir(exist_ok=True)
+    log_filename = LOG_FOLDER / f'output_{datetime.now().strftime("%Y-%m-%d_%H-%M-%S")}_experiment.log'
     file_handler = FileHandler(log_filename, "w")
     file_handler.setLevel("INFO")
     file_handler.setFormatter(log_formatter)
