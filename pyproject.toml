@@ -28,13 +28,13 @@ keywords = [
 dynamic = ["version"]   
 
 dependencies = [
-    "voxel",
-    "view",
+    #"voxel",
+    #"view",
     "aind_data_schema >= 0.26.7",
 ]
 
-[project.optional-dependencies]
-"dev" = ["black", "isort", "flake8"]
+# [project.optional-dependencies]
+# "dev" = ["black", "isort", "flake8"]
 
 [project.urls]
 "Homepage" = "https://github.com/AllenNeuralDynamics/exaspim-control"

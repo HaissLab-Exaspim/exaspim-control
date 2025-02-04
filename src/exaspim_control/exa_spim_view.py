@@ -13,7 +13,7 @@ from qtpy.QtWidgets import (
     QWidget,
     QComboBox,
 )
-
+from pathlib import Path ## NECESSARY MODIFICATION
 from view.acquisition_view import AcquisitionView
 from view.instrument_view import InstrumentView
 from view.widgets.acquisition_widgets.channel_plan_widget import ChannelPlanWidget
@@ -36,6 +36,7 @@ from qtpy.QtWidgets import (
 import numpy as np
 import time
 from napari.utils.theme import get_theme
+from datetime import datetime
 
 
 class ExASPIMInstrumentView(InstrumentView):
