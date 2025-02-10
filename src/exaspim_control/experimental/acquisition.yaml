@@ -19,7 +19,16 @@ acquisition:
         format: [ instrument_type, subject_id ]
   operations:
     vp-151mx:
-      # imaris:
+      imaris: 
+        type: writer
+        driver: voxel.writers.imaris
+        module: ImarisWriter
+        init:
+          path: D:\\
+        properties:
+          compression: lz4shuffle
+          data_type: uint16
+      # aqz:
       #   type: writer
       #   driver: voxel.writers.imaris
       #   module: ImarisWriter
