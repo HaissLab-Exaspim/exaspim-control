@@ -30,7 +30,6 @@ dynamic = ["version"]
 dependencies = [
     #"voxel",
     #"view",
-    "aind_data_schema >= 0.26.7",
 ]
 
 # [project.optional-dependencies]
