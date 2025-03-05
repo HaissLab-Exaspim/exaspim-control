@@ -22,8 +22,8 @@ instrument:
       init:
         id: MP151BCY018
       properties:
-        exposure_time_ms: 10.0
-        pixel_type: mono16
+        exposure_time_ms: 350.0
+        pixel_type: mono14
         height_px: 10640
         width_px: 14192
         trigger:
@@ -52,15 +52,14 @@ instrument:
         wavelength: 561
         maximum_power_mw: 1000
     639 nm:
-     type: laser
-     driver: voxel.devices.laser.coherent.obis_lx
-     module: ObisLXLaser
-     color: red
-     init:
-       id: M231211006
-       wavelength: 639
-       port: COM6
-       maximum_power_mw: 1000
+      type: laser
+      driver: voxel.devices.laser.simulated
+      module: SimulatedLaser
+      color: red
+      init:
+        id: M231211006
+        wavelength: 639
+        maximum_power_mw: 1000
     tiger controller:
       type: stage
       driver: tigerasi.tiger_controller
@@ -116,30 +115,6 @@ instrument:
             speed_mm_s: 0.3
             backlash_mm: 0.004
             acceleration_ms: 200.0
-        # left:
-        #   type: focusing_stage
-        #   driver: voxel.devices.stage.asi.tiger
-        #   module: TigerStage
-        #   init:
-        #     hardware_axis: a
-        #     instrument_axis: a
-        #   properties:
-        #     mode: off
-        #     speed_mm_s: 0.01
-        #     backlash_mm: 0.004
-        #     acceleration_ms: 5.0
-        # right:
-        #   type: focusing_stage
-        #   driver: voxel.devices.stage.asi.tiger
-        #   module: TigerStage
-        #   init:
-        #     hardware_axis: b
-        #     instrument_axis: b
-        #   properties:
-        #     mode: off
-        #     speed_mm_s: 0.01
-        #     backlash_mm: 0.004
-        #     acceleration_ms: 5.0
         camera:
           type: focusing_stage
           driver: voxel.devices.stage.asi.tiger
@@ -152,82 +127,13 @@ instrument:
             speed_mm_s: 0.01
             backlash_mm: 0.004
             acceleration_ms: 20.0
-        # joystick:
-        #    type: joystick
-        #    driver: voxel.devices.joystick.asi
-        #    module: Joystick
-        #    init:
-        #      joystick_mapping:
-        #        joystick_x:
-        #          instrument_axis: x
-        #          polarity: default
-        #        joystick_y:
-        #          instrument_axis: z
-        #          polarity: default
-        #        wheel_z:
-        #          instrument_axis: a
-        #          polarity: default
-        #        wheel_f:
-        #          instrument_axis: b
-        #          polarity: default
-        #      axis_mapping:
-        #        x: x
-        #        y: v
-        #        z: z
-        #        t: t
-        #        a: a
-        #        b: b
-        #        m: m
-    # temperature_sensor:
-    #   type: temperature_sensor
-    #   driver: voxel.devices.temperature_sensor.thorlabs.tsp0b1
-    #   module: TSP01BTemperatureSensor
-    #   init:
-    #     id: M01221847
-    #     channel: TH1
-    # power meter:
-    #   type: power_meter
-    #   driver: voxel.devices.power_meter.thorlabs.pm100
-    #   module: PM100Meter
-    #   init:
-    #     id: pm100d
-    #     conn: P0044066
-    # flip mount:
-    #   type: flip_mount
-    #   driver: voxel.devices.flip_mount.thorlabs.mff101
-    #   module: MFF1101FlipMount
-    #   init:
-    #     id: powell lens
-    #     conn: "37008111"
-    #     positions:
-    #       alignment mode: 0
-    #       imaging mode: 1
-    #   properties:
-    #     flip_time_ms: 2800
-    # aotf:
-    #   type: aotf
-    #   driver: voxel.devices.aotf.aaopto.aotfnc
-    #   module: AAOptoAOTF
-    #   init:
-    #     port: COM6
-    # left tunable lens:
-    #   type: tunable_lens
-    #   driver: voxel.devices.tunable_lens.optotune.icc4c
-    #   module: ICC4CTunableLens
-    #   init:
-    #     port: COM4
-    #     channel: 0
-    #   properties:
-    #     mode: external
-    # right tunable lens:
-    #   type: tunable_lens
-    #   driver: voxel.devices.aotf.optotune.icc4c
-    #   module: ICC4CTunableLens
-    #   init:
-    #     port: COM19
-    #     channel: 1
-    #   properties:
-    #     mode: external
+    temperature_sensor:
+      type: temperature_sensor
+      driver: voxel.devices.temperature_sensor.thorlabs.tsp0b1
+      module: TSP01BTemperatureSensor
+      init:
+        id: M00542274
+        channel: TH1
     pcie-6738:
       type: daq
       driver: voxel.devices.daq.ni
@@ -247,60 +153,29 @@ instrument:
                 parameters:
                   start_time_ms:
                     channels:
-                      "488": 0.0
-                      "561": 0.0
-                      "639": 0.0
+                      "488": 15.0
+                      "561": 15.0
+                      "639": 15.0
                   end_time_ms:
                     channels:
-                      "488": 544.0
-                      "561": 544.0
-                      "639": 544.0
+                      "488": 385.0
+                      "561": 385.0
+                      "639": 385.0
                   amplitude_volts:
                     channels:
-                      "488": 2.795
-                      "561": 2.795
-                      "639": 2.795
+                      "488": 2.5
+                      "561": 2.5
+                      "639": 2.5
                   offset_volts:
                     channels:
-                      "488": 5.21
-                      "561": 5.39
-                      "639": 5.62
+                      "488": 5.0
+                      "561": 5.0
+                      "639": 5.0
                   cutoff_frequency_hz:
                     channels:
                       "488": 1000
                       "561": 1000
                       "639": 1000
-              # right tunable lens:
-              #   port: ao3
-              #   waveform: sawtooth
-              #   device_max_volts: 5.0
-              #   device_min_volts: 0.0
-              #   parameters:
-              #     start_time_ms:
-              #       channels:
-              #         "488": 0.0
-              #         "561": 0.0
-              #         # "639": 0.0
-              #     end_time_ms:
-              #       channels:
-              #         "488": 544.0
-              #         "561": 544.0
-              #         # "639": 544.0
-              #     amplitude_volts:
-              #       channels:
-              #         "488": -0.078
-              #         "561": -0.078
-              #         # "639": -0.078
-              #     offset_volts:
-              #       channels:
-              #         "488": 2.448
-              #         "561": 2.448
-              #         # "639": 2.448
-              #     cutoff_frequency_hz:
-              #       channels:
-              #         "488": 1000
-              #         "561": 1000
-              #         # "639": 1000
               stage:
                 port: ao2
                 waveform: square wave
@@ -309,14 +184,14 @@ instrument:
                 parameters:
                   start_time_ms:
                     channels:
-                      "488": 544.0
-                      "561": 544.0
-                      "639": 544.0
+                      "488": 450.0
+                      "561": 450.0
+                      "639": 450.0
                   end_time_ms:
                     channels:
-                      "488": 554.0
-                      "561": 554.0
-                      "639": 554.0
+                      "488": 451.0
+                      "561": 451.0
+                      "639": 451.0
                   max_volts:
                     channels:
                       "488": 5.0
@@ -366,12 +241,12 @@ instrument:
                       "639": 15.0
                   end_time_ms:
                     channels:
-                      "488": 549.0
-                      "561": 549.0
-                      "639": 549.0
+                      "488": 400.0
+                      "561": 400.0
+                      "639": 400.0
                   max_volts:
                     channels:
-                      "488": 5.0
+                      "488": 10.0
                       "561": 0.0
                       "639": 0.0
                   min_volts:
@@ -392,9 +267,9 @@ instrument:
                       "639": 15.0
                   end_time_ms:
                     channels:
-                      "488": 549.0
-                      "561": 549.0
-                      "639": 549.0
+                      "488": 400.0
+                      "561": 400.0
+                      "639": 400.0
                   max_volts:
                     channels:
                       "488": 0.0
@@ -418,99 +293,21 @@ instrument:
                       "639": 15.0
                   end_time_ms:
                     channels:
-                      "488": 549.0
-                      "561": 549.0
-                      "639": 549.0
+                      "488": 400.0
+                      "561": 400.0
+                      "639": 400.0
                   max_volts:
                     channels:
                       "488": 0.0
                       "561": 0.0
-                      "639": 5.0
+                      "639": 10.0
                   min_volts:
                     channels:
                       "488": 0.0
                       "561": 0.0
                       "639": 0.0
-              # left piezo x:
-              #   port: ao7
-              #   waveform: square wave
-              #   device_max_volts: 10.0
-              #   device_min_volts: 0.0
-              #   parameters:
-              #     start_time_ms:
-              #       channels:
-              #         "488": 0.0
-              #         "561": 0.0
-              #         # "639": 0.0
-              #     end_time_ms:
-              #       channels:
-              #         "488": 594.0
-              #         "561": 594.0
-              #         # "639": 594.0
-              #     max_volts:
-              #       channels:
-              #         "488": 0.0
-              #         "561": 0.0
-              #         # "639": 0.0
-              #     min_volts:
-              #       channels:
-              #         "488": 0.0
-              #         "561": 0.0
-              #         # "639": 0.0
-              # left piezo y:
-              #   port: ao11
-              #   waveform: square wave
-              #   device_max_volts: 10.0
-              #   device_min_volts: 0.0
-              #   parameters:
-              #     start_time_ms:
-              #       channels:
-              #         "488": 0.0
-              #         "561": 0.0
-              #         # "639": 0.0
-              #     end_time_ms:
-              #       channels:
-              #         "488": 594.0
-              #         "561": 594.0
-              #         # "639": 594.0
-              #     max_volts:
-              #       channels:
-              #         "488": 0.0
-              #         "561": 0.0
-              #         # "639": 0.0
-              #     min_volts:
-              #       channels:
-              #         "488": 0.0
-              #         "561": 0.0
-              #         # "639": 0.0
-              # left piezo z:
-              #   port: ao14
-              #   waveform: square wave
-              #   device_max_volts: 10.0
-              #   device_min_volts: 0.0
-              #   parameters:
-              #     start_time_ms:
-              #       channels:
-              #         "488": 0.0
-              #         "561": 0.0
-              #         # "639": 0.0
-              #     end_time_ms:
-              #       channels:
-              #         "488": 594.0
-              #         "561": 594.0
-              #         # "639": 594.0
-              #     max_volts:
-              #       channels:
-              #         "488": 0.0
-              #         "561": 0.0
-              #         # "639": 0.0
-              #     min_volts:
-              #       channels:
-              #         "488": 0.0
-              #         "561": 0.0
-              #         # "639": 0.0
             timing:
-              period_time_ms: 544.0
+              period_time_ms: 500.0
               rest_time_ms: 150.0
               retriggerable: "on"
               sample_mode: finite

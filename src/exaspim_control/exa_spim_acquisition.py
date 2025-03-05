@@ -306,6 +306,9 @@ class ExASPIMAcquisition(Acquisition):
         :type scanning_stage: ScanningStage
         """
         # initatlized shared double buffer and processes
+
+        print(tile)
+
         self.log.info("setting up buffers")
         process_buffers = dict()
         chunk_lock = Lock()
@@ -333,7 +336,7 @@ class ExASPIMAcquisition(Acquisition):
                 buffer=buffer.buf,
             )
             process.prepare(buffer.name)
-
+        self.log.info("Processes have been set up.")
         # set up writer and camera
         camera.prepare()
         writer.prepare()

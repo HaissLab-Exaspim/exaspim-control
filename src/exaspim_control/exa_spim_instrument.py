@@ -5,6 +5,11 @@ from ruamel.yaml import YAML
 
 from voxel.instruments.instrument import Instrument
 
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING :
+    from tigerasi.tiger_controller import TigerController
+
 DIRECTORY = Path(__file__).parent.resolve()
 
 
@@ -62,3 +67,18 @@ class ExASPIM(Instrument):
             raise ValueError("x tiling stage is required")
         if not self.tiling_stages["y"]:
             raise ValueError("y tiling stage is required")
+    
+        
+        if 'tiger controller' in self.stages.keys():
+            
+            from tigerasi.tiger_controller import Cmds
+            import time
+
+            stage : "TigerController" = self.stages['tiger controller']
+            # set rotary encoder used
+            # stage._set_cmd_args_and_kwds(Cmds.CCA, "X=4")
+            # stage._set_cmd_args_and_kwds(Cmds.RESET)
+            # print("Sleeping for 10 sec to wait tiger motor stage reset after setting rotary encoders")
+            # time.sleep(10)
+            # set joystick correctly
+            stage._set_cmd_args_and_kwds(Cmds.J, "X=2 V=3 Z=22 T=23")

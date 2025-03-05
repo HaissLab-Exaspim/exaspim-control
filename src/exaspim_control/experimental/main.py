@@ -2,6 +2,7 @@ from qtpy.QtWidgets import QApplication
 import sys
 from logging import FileHandler
 from pathlib import Path, WindowsPath
+from coherent_lasers.genesis_mx.driver import GenesisMX
 import logging
 import os
 import numpy as np
@@ -11,6 +12,7 @@ from exaspim_control.exa_spim_view import ExASPIMInstrumentView, ExASPIMAcquisit
 from exaspim_control.exa_spim_instrument import ExASPIM
 from exaspim_control.exa_spim_acquisition import ExASPIMAcquisition
 from datetime import datetime
+from voxel.instruments.instrument import Instrument
 
 RESOURCES_DIR = Path(os.path.dirname(os.path.realpath(__file__)))
 LOG_FOLDER = Path(__file__).parent.parent.parent.parent / "logs" 
@@ -53,6 +55,9 @@ def launch_exaspim():
     yaml.representer.add_representer(np.float64, lambda obj, val: obj.represent_float(float(val)))
     yaml.representer.add_representer(Path, lambda obj, val: obj.represent_str(str(val)))
     yaml.representer.add_representer(WindowsPath, lambda obj, val: obj.represent_str(str(val)))
+    yaml.representer.add_representer(WindowsPath, lambda obj, val: obj.represent_str(str(val)))
+    yaml.representer.add_representer(GenesisMX, lambda obj, val: obj.represent_str(str(val)))
+    
 
     # instrument
     instrument = ExASPIM(config_filename=INSTRUMENT_YAML, yaml_handler=yaml, log_level="INFO")
@@ -74,5 +79,35 @@ def launch_exaspim():
     sys.exit(app.exec_())
 
 
+class TempInstrument(Instrument):
+
+    def __init__(config_path : Path):
+        yaml = YAML()
+        yaml.representer.add_representer(np.int64, lambda obj, val: obj.represent_int(int(val)))
+        yaml.representer.add_representer(np.int32, lambda obj, val: obj.represent_int(int(val)))
+        yaml.representer.add_representer(np.str_, lambda obj, val: obj.represent_str(str(val)))
+        yaml.representer.add_representer(np.float64, lambda obj, val: obj.represent_float(float(val)))
+        yaml.representer.add_representer(Path, lambda obj, val: obj.represent_str(str(val)))
+        yaml.representer.add_representer(WindowsPath, lambda obj, val: obj.represent_str(str(val)))
+
+def tune_asi(config_path : Path):
+    yaml = YAML()
+    yaml.representer.add_representer(np.int64, lambda obj, val: obj.represent_int(int(val)))
+    yaml.representer.add_representer(np.int32, lambda obj, val: obj.represent_int(int(val)))
+    yaml.representer.add_representer(np.str_, lambda obj, val: obj.represent_str(str(val)))
+    yaml.representer.add_representer(np.float64, lambda obj, val: obj.represent_float(float(val)))
+    yaml.representer.add_representer(Path, lambda obj, val: obj.represent_str(str(val)))
+    yaml.representer.add_representer(WindowsPath, lambda obj, val: obj.represent_str(str(val)))
+    config = yaml.load(config_path)
+
+
+
+
+
+
+
 if __name__ == "__main__":
     launch_exaspim()
+
+
+

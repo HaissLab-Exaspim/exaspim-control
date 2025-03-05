@@ -84,7 +84,7 @@ class MetadataLaunch:
                     self.log.info(f"copying {self.log_filename} to {save_to}")
                     shutil.copy(
                         self.log_filename,
-                        str(Path(save_to, self.log_filename)),
+                        str(Path(save_to, Path(self.log_filename).name )),
                     )
             # re-arrange external directory
             os.makedirs(Path(save_to, "exaSPIM"))
@@ -107,7 +107,7 @@ class MetadataLaunch:
                     self.log.info(f"copying {self.log_filename} to {save_to}")
                     shutil.copy(
                         self.log_filename,
-                        str(Path(save_to, self.log_filename)),
+                        str(Path(save_to, Path(self.log_filename).name )),
                     )
             # re-arrange external directory
             os.makedirs(Path(save_to, "exaSPIM"))

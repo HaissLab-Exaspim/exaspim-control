@@ -36,13 +36,17 @@ from qtpy.QtWidgets import (
 import numpy as np
 import time
 from napari.utils.theme import get_theme
+from napari.utils.colormaps import ALL_COLORMAPS 
 from datetime import datetime
 
+from typing import TYPE_CHECKING
 
+if TYPE_CHECKING :
+    from voxel.instruments.instrument import Instrument
 class ExASPIMInstrumentView(InstrumentView):
     """View for ExASPIM Instrument"""
 
-    def __init__(self, instrument, config_path: Path, log_level="INFO"):
+    def __init__(self, instrument : "Instrument", config_path: Path, log_level="INFO"):
 
         self.flip_mount_widgets = {}
         super().__init__(instrument, config_path, log_level)
@@ -214,6 +218,8 @@ class ExASPIMInstrumentView(InstrumentView):
         x_center_um = image.shape[1] // 2 * self.instrument.cameras[camera_name].sampling_um_px
         pixel_size_um = self.instrument.cameras[camera_name].sampling_um_px
 
+        
+
         if image is not None:
             _ = self.viewer.layers
             # add crosshairs to image
@@ -243,6 +249,7 @@ class ExASPIMInstrumentView(InstrumentView):
                 layer.data = multiscale
             else:
                 # Add image to a new layer if layer doesn't exist yet or image is snapshot
+                color = ALL_COLORMAPS[ self.instrument.config["instrument"]["devices"][f"{self.livestream_channel} nm"]["color"] ]
                 layer = self.viewer.add_image(
                     multiscale,
                     name=layer_name,
@@ -250,6 +257,8 @@ class ExASPIMInstrumentView(InstrumentView):
                     scale=(pixel_size_um, pixel_size_um),
                     translate=(-x_center_um, y_center_um),
                     rotate=self.camera_rotation,
+                    colormap=color,
+                    blending = "translucent_no_depth" if snapshot else "additive"
                 )
                 layer.mouse_drag_callbacks.append(self.save_image)
                 if snapshot:  # emit signal if snapshot
@@ -370,6 +379,9 @@ class ExASPIMAcquisitionView(AcquisitionView):
 
     acquisitionEnded = Signal()
     acquisitionStarted = Signal((datetime))
+
+    instrument_view : ExASPIMInstrumentView
+    instrument : "Instrument"
 
     def __init__(self, acquisition: object, instrument_view: ExASPIMInstrumentView):
         """

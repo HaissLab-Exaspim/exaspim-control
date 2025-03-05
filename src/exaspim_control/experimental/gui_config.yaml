@@ -2,8 +2,8 @@ instrument_view:
   properties:
     camera_rotation_deg: -90.0
     resolution_levels: 6
-    intensity_min: 30
-    intensity_max: 400
+    intensity_min: 0
+    intensity_max: 16383
     alignment_roi_size: 512
   device_widgets:
       vp-151mx:
@@ -44,13 +44,13 @@ instrument_view:
           advanced_user: False
         updating_properties:
           - power_mw
-          - temperature_c
+        #   - temperature_c
       z:
         type: scanning_stage
         driver: exaspim_control.widgets.stage_widget
         module: StageWidget
         init:
-          advanced_user: False
+          advanced_user: True
         updating_properties:
           - position_mm
       y:
@@ -116,17 +116,26 @@ instrument_view:
         driver: exaspim_control.widgets.ni_widget
         module: NIWidget
         init:
-            advanced_user: False
+            advanced_user: True
             exposed_branches:
               tasks.ao_task.ports.left tunable lens:
                 parameters.amplitude_volts.channels:
-                      "488": 2.795
-                      "561": 2.795
-                      "639": 2.795
+                      "488": 2.5
+                      "561": 2.5
+                      "639": 2.5
                 parameters.offset_volts.channels:
-                      "488": 5.21
-                      "561": 5.39
-                      "639": 5.62
+                      "488": 5
+                      "561": 5
+                      "639": 5
+              tasks.ao_task.ports.488 nm:
+                parameters.max_volts.channels:
+                      "488": 10.0
+              tasks.ao_task.ports.561 nm:
+                parameters.max_volts.channels:
+                      "561": 10.0
+              tasks.ao_task.ports.639 nm:
+                parameters.max_volts.channels:
+                      "639": 10.0
               # tasks.ao_task.ports.right tunable lens:
               #   parameters.amplitude_volts.channels:
               #         "488": 2.795
@@ -149,7 +158,7 @@ acquisition_view:
             delegate: combo
             type: str
             items: ["64", "128", "256", "512", "1024", "2048"]
-            initial_value: "2048"
+            initial_value: "64"
           prechecks:
             delegate: combo
             type: str
@@ -167,4 +176,6 @@ acquisition_view:
             minimum: 0
             maximum: 1000
             initial_value: 0
+          
+
   operation_widgets: {}

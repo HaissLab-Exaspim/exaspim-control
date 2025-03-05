@@ -14,6 +14,9 @@ from view.widgets.miscellaneous_widgets.q_scrollable_float_slider import QScroll
 from view.widgets.miscellaneous_widgets.q_scrollable_line_edit import QScrollableLineEdit
 
 
+from logging import getLogger
+logger = getLogger(__name__)
+
 class NIWidget(BaseDeviceWidget):
     """
     Widget for National Instruments (NI) device control.
@@ -80,8 +83,13 @@ class NIWidget(BaseDeviceWidget):
         :param channel_name: The name of the channel
         :type channel_name: str
         """
+
+
+
         if not self.advanced_user:
             return
+
+        logger.info("Plotting the waveforms")
 
         name_lst = channel_name.split(".")
         task = ".".join(name_lst[: name_lst.index("ports")])

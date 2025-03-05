@@ -6,7 +6,7 @@ acquisition:
       metadata_dictionary:
         instrument_type: exaSPIM
         subject_id: '123456'
-        experimenter_full_name: [adam glaser]
+        experimenter_full_name: [bahar asadipour, lorenzo panelatti, timothe jost-mouseau]
         chamber_immersion:
           medium: other
           refractive_index: 1.33
@@ -24,7 +24,7 @@ acquisition:
         driver: voxel.writers.imaris
         module: ImarisWriter
         init:
-          path: D:\\
+          path: D:/data/software_v2
         properties:
           compression: lz4shuffle
           data_type: uint16
@@ -37,27 +37,27 @@ acquisition:
       #   properties:
       #     compression: lz4shuffle
       #     data_type: uint16
-      aqz:
-        type: writer
-        driver: voxel.writers.zarr
-        module: ZarrWriter
-        init:
-          path: D:\\
-        properties:
-          compression: zstd
-          data_type: uint16
-          chunk_size_x_px: 128
-          chunk_size_y_px: 128
-          chunk_size_z_px: 32
-          multiscale: True
-          version: v3
+      # aqz:
+      #   type: writer
+      #   driver: voxel.writers.zarr
+      #   module: ZarrWriter
+      #   init:
+      #     path: D:/data/software_v2
+      #   properties:
+      #     compression: zstd
+      #     data_type: uint16
+      #     chunk_size_x_px: 128
+      #     chunk_size_y_px: 128
+      #     chunk_size_z_px: 32
+      #     multiscale: True
+      #     version: v3
       robocopy:
         type: file_transfer
         driver: voxel.file_transfers.robocopy_zarr
         module: RobocopyFileTransfer
         init:
-          external_path: Z:\\scratch\\adam.glaser
-          local_path: D:\\
+          external_path: D:/data2/software_v2
+          local_path: D:/data/software_v2
         properties:
           verify_transfer: True
           max_retry: 3
