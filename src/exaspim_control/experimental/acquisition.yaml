@@ -6,7 +6,7 @@ acquisition:
       metadata_dictionary:
         instrument_type: exaSPIM
         subject_id: '123456'
-        experimenter_full_name: [bahar asadipour, lorenzo panelatti, timothe jost-mouseau]
+        experimenter_full_name: [bahar asadipour, lorenzo panelatti, timothe jost-mouseau, gabriel sarria]
         chamber_immersion:
           medium: other
           refractive_index: 1.33

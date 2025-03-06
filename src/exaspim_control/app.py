@@ -52,6 +52,17 @@ def launch(config_path: str, simulated: bool) -> None:
         click.echo(f"Running using physical devices")
         launch_real_device()
 
+@cli.command()
+@click.option("--stage-motion", "-s", is_flag=True, help="Test stage movement",default=False)
+@click.option("--fix-rotary", "-r", is_flag=True, help="Setup rotary encoder",default=False)
+def debug(stage_motion : bool, fix_rotary : bool):
+    from exaspim_control.debug_tools.stage import StageInstrument
+    if stage_motion :
+        StageInstrument().stage_motion_run()
+    elif fix_rotary:
+        StageInstrument().set_rotary_encoder()
+    else :
+        raise ValueError("You must supply a debug test to run")
 
 if __name__ == "__main__":
     cli()
