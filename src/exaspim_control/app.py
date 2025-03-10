@@ -55,12 +55,17 @@ def launch(config_path: str, simulated: bool) -> None:
 @cli.command()
 @click.option("--stage-motion", "-s", is_flag=True, help="Test stage movement",default=False)
 @click.option("--fix-rotary", "-r", is_flag=True, help="Setup rotary encoder",default=False)
-def debug(stage_motion : bool, fix_rotary : bool):
+@click.option("--fix-timing-accuracy", "-t", is_flag=True, help="Setup AA command to fix timing accuracy",default=False)
+@click.argument('args', nargs=-1)
+def debug(stage_motion : bool, fix_rotary : bool, fix_timing_accuracy : bool, args):
+    print(args)
     from exaspim_control.debug_tools.stage import StageInstrument
     if stage_motion :
-        StageInstrument().stage_motion_run()
+        StageInstrument().stage_motion_run(*args)
     elif fix_rotary:
-        StageInstrument().set_rotary_encoder()
+        StageInstrument().set_rotary_encoder(*args)
+    elif fix_timing_accuracy:
+        StageInstrument().set_acceleration_weirdness(*args)
     else :
         raise ValueError("You must supply a debug test to run")
 
