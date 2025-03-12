@@ -22,7 +22,7 @@ instrument:
       init:
         id: MP151BCY018
       properties:
-        exposure_time_ms: 150.0
+        exposure_time_ms: 350.0
         pixel_type: mono14
         height_px: 10640
         width_px: 14192
@@ -158,9 +158,9 @@ instrument:
                       "639": 15.0
                   end_time_ms:
                     channels:
-                      "488": 185.0
-                      "561": 185.0
-                      "639": 185.0
+                      "488": 385.0
+                      "561": 385.0
+                      "639": 385.0
                   amplitude_volts:
                     channels:
                       "488": 2.45
@@ -300,7 +300,7 @@ instrument:
                     channels:
                       "488": 0.0
                       "561": 0.0
-                      "639": 10.0
+                      "639": 8.0
                   min_volts:
                     channels:
                       "488": 0.0

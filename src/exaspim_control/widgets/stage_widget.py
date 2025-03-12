@@ -6,11 +6,15 @@ from qtpy.QtWidgets import QLabel
 from view.widgets.base_device_widget import BaseDeviceWidget, scan_for_properties
 from view.widgets.miscellaneous_widgets.q_scrollable_line_edit import QScrollableLineEdit
 
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING :
+    from voxel.devices.stage.base import BaseStage
 
 class StageWidget(BaseDeviceWidget):
     """Widget for handling stage properties and controls."""
 
-    def __init__(self, stage: object, advanced_user: bool = True):
+    def __init__(self, stage: 'BaseStage', advanced_user: bool = True):
         """
         Initialize the StageWidget object.
 
@@ -25,7 +29,7 @@ class StageWidget(BaseDeviceWidget):
         super().__init__(type(stage), self.stage_properties)
 
         # alter position_mm widget to use instrument_axis as label
-        self.property_widgets["position_mm"].setEnabled(False)
+        self.property_widgets["position_mm"].setEnabled(advanced_user)
         position_label = self.property_widgets["position_mm"].findChild(QLabel)
         # TODO: Change when deliminated property is updated
         unit = getattr(type(stage).position_mm, "unit", "mm")
