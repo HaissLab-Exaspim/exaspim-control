@@ -306,6 +306,84 @@ instrument:
                       "488": 0.0
                       "561": 0.0
                       "639": 0.0
+              left piezo x:
+                port: ao12
+                waveform: square wave
+                device_max_volts: 10.0
+                device_min_volts: 0.0
+                parameters:
+                  start_time_ms:
+                    channels:
+                      "488": 0.0
+                      "561": 0.0
+                      "639": 0.0
+                  end_time_ms:
+                    channels:
+                      "488": 499.0
+                      "561": 499.0
+                      "639": 499.0
+                  max_volts:
+                    channels:
+                      "488": 5.0
+                      "561": 5.0
+                      "639": 5.0
+                  min_volts:
+                    channels:
+                      "488": 0.0
+                      "561": 0.0
+                      "639": 0.0
+              left piezo y:
+                port: ao11
+                waveform: square wave
+                device_max_volts: 10.0
+                device_min_volts: 0.0
+                parameters:
+                  start_time_ms:
+                    channels:
+                      "488": 0.0
+                      "561": 0.0
+                      "639": 0.0
+                  end_time_ms:
+                    channels:
+                      "488": 499.0
+                      "561": 499.0
+                      "639": 499.0
+                  max_volts:
+                    channels:
+                      "488": 5.0
+                      "561": 5.0
+                      "639": 5.0
+                  min_volts:
+                    channels:
+                      "488": 0.0
+                      "561": 0.0
+                      "639": 0.0
+              left piezo z:
+                port: ao14
+                waveform: square wave
+                device_max_volts: 10.0
+                device_min_volts: 0.0
+                parameters:
+                  start_time_ms:
+                    channels:
+                      "488": 0.0
+                      "561": 0.0
+                      "639": 0.0
+                  end_time_ms:
+                    channels:
+                      "488": 499.0
+                      "561": 499.0
+                      "639": 499.0
+                  max_volts:
+                    channels:
+                      "488": 5.0
+                      "561": 5.0
+                      "639": 5.0
+                  min_volts:
+                    channels:
+                      "488": 0.0
+                      "561": 0.0
+                      "639": 0.0
             timing:
               period_time_ms: 500.0
               rest_time_ms: 150.0
