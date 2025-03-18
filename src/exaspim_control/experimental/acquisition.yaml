@@ -53,7 +53,7 @@ acquisition:
       #     version: v3
       robocopy:
         type: file_transfer
-        driver: voxel.file_transfers.robocopy_zarr
+        driver: voxel.file_transfers.robocopy
         module: RobocopyFileTransfer
         init:
           external_path: D:/data2/software_v2

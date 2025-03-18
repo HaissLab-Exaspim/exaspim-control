@@ -140,6 +140,40 @@ instrument:
       module: NIDAQ
       init:
         dev: Dev1
+      subdevices:
+        filter wheel:
+          type: filter_wheel
+          driver: voxel.devices.filterwheel.ni
+          module: DAQFilterWheel
+          init:
+            dev: Dev1
+            filters:
+              500LP: 0
+              655LP: 4
+              620/60BP: 6
+            ports:
+              500LP: ao23
+              655LP: ao19
+              620/60BP: ao29
+          subdevices:
+            500LP:
+              type: filter
+              driver: voxel.devices.filter.ni
+              module: Filter
+              init:
+                id: 500LP
+            655LP:
+              type: filter
+              driver: voxel.devices.filter.ni
+              module: Filter
+              init:
+                id: 655LP
+            620/60BP:
+              type: filter
+              driver: voxel.devices.filter.ni
+              module: Filter
+              init:
+                id: 620/60BP
       properties:
         tasks:
           ao_task:
